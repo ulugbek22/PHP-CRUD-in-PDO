@@ -20,14 +20,15 @@ class User
 			die();
 		}
 	}
-	/**
-	***=============================================================================
-	Performs an sql query.
-	@sql - any sql query, 
-	@bindings - assoc array parametrs for the WHERE clause,
-	@insert - is this an insert statement or not, if it is we dont need to fetch, instead return the last insert id.
-	***=============================================================================
-	**/
+	// 
+	// ============================================================================
+	// Performs an sql query.
+	// @sql - any sql query, 
+	// @bindings - assoc array parametrs for the WHERE clause,
+	// @insert - is this an insert statement or not, if it is we dont need to fetch,
+	// instead return the last insert id.
+	// =============================================================================
+	// 
 	protected function query($sql, $bindings = false, $mood = false)
 	{
 		if ($bindings) {
@@ -40,13 +41,13 @@ class User
 
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
-	/**
-	***=============================================================================
-										CREATE
-	Adds a user and returns its id.
-	add(['username' => 'lola', 'password' => '123', 'role' => 'user']) 
-	***=============================================================================
-	**/
+	//
+	// =============================================================================
+	// 									CREATE
+	// Adds a user and returns its id.
+	// add(['username' => 'lola', 'password' => '123', 'role' => 'user']) 
+	// =============================================================================
+	// 
 	public function add($data)
 	{
 		foreach ($data as $key => $value) @$values .= ":$key, ";
@@ -54,14 +55,14 @@ class User
 		$sql = "INSERT INTO users (username, password, role) VALUES ($values)";
 		return $this->query($sql, $data, 'insert');
 	}
-	/**
-	***=============================================================================
-										READ
-	get() returns all the users in the table.
-	get(['id' => 5]) returns the user with the id 5.
-	get(['username' => 'ulugbek']) returns all the users whose usernames = ulugbek.
-	***=============================================================================
-	**/
+	//
+	// =============================================================================
+	// 									READ
+	// get() returns all the users in the table.
+	// get(['id' => 5]) returns the user with the id 5.
+	// get(['username' => 'ulugbek']) returns all the users whose usernames = ulugbek.
+	// =============================================================================
+	//
 	public function get($data = false)
 	{
 		if ($data) {
@@ -69,16 +70,16 @@ class User
 			return $this->query("SELECT * FROM users WHERE $where", $data);
 		} else return $this->query("SELECT * FROM users");
 	}
-	/**
-	***=============================================================================
-										UPDATE
-	Update one user by id
-	@id - the user id that you want to update
-	@update - new data in an assoc array to update
-	update(12, ['username' => 'Ulugbek', 'password' => '101', 'role' => 'king']);
-	You dont have to update all the fileds, you just can update one or two.
-	***=============================================================================
-	**/
+	// 
+	// =============================================================================
+	// 									UPDATE
+	// Update one user by id
+	// @id - the user id that you want to update
+	// @update - new data in an assoc array to update
+	// update(12, ['username' => 'Ulugbek', 'password' => '101', 'role' => 'king']);
+	// You dont have to update all the fileds, you just can update one or two.
+	// =============================================================================
+	// 
 	public function update($id, $update)
 	{
 		$the_user = $this->get(['id' => $id])[0];
@@ -89,14 +90,14 @@ class User
 
 		return $this->query($sql, $update, 'update');
 	}
-	/**
-	***=============================================================================
-										DELETE
-	Delete one or any number of users by a given parametr
-	delete(['role' => 'user']) - deletes all the users whose role is user
-	delete(['id' => 2]) - deletes the user with the id of 2
-	***=============================================================================
-	**/
+	//
+	// =============================================================================
+	// 									DELETE
+	// Delete one or any number of users by a given parametr
+	// delete(['role' => 'user']) - deletes all the users whose role is user
+	// delete(['id' => 2]) - deletes the user with the id of 2
+	// =============================================================================
+	// 
 	public function delete($data)
 	{
 		foreach ($data as $key => $value) $where = "$key = :$key";
