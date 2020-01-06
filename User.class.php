@@ -43,7 +43,7 @@ class User
 	}
 	//
 	// =============================================================================
-	// 									CREATE
+	// 					CREATE
 	// Adds a user and returns its id.
 	// add(['username' => 'lola', 'password' => '123', 'role' => 'user']) 
 	// =============================================================================
@@ -57,7 +57,7 @@ class User
 	}
 	//
 	// =============================================================================
-	// 									READ
+	// 					READ
 	// get() returns all the users in the table.
 	// get(['id' => 5]) returns the user with the id 5.
 	// get(['username' => 'ulugbek']) returns all the users whose usernames = ulugbek.
@@ -72,7 +72,7 @@ class User
 	}
 	// 
 	// =============================================================================
-	// 									UPDATE
+	// 					UPDATE
 	// Update one user by id
 	// @id - the user id that you want to update
 	// @update - new data in an assoc array to update
@@ -92,7 +92,7 @@ class User
 	}
 	//
 	// =============================================================================
-	// 									DELETE
+	// 					DELETE
 	// Delete one or any number of users by a given parametr
 	// delete(['role' => 'user']) - deletes all the users whose role is user
 	// delete(['id' => 2]) - deletes the user with the id of 2
